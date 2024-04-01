@@ -78,7 +78,10 @@ public class RobotContainer {
     autoChooser.addOption("Speak Center", "startCenter");
     autoChooser.addOption("Speak Source", "startRight");
     autoChooser.addOption("Shoot", "Shoot");
-    autoChooser.addOption("Grinch Auto", "operationLiterBox");
+    autoChooser.addOption("Grinch Source", "operationLitterBoxSource");
+    autoChooser.addOption("Grinch Center", "operationLitterBoxCenter");
+    autoChooser.addOption("Grinch Amp", "operationLitterBoxAmp");
+    autoChooser.addOption("Grinch with Amp Shot", "operationLitterBoxAmpShot");
     SmartDashboard.putData("Auto Chooser", autoChooser); 
 
     //Named Commands for auto

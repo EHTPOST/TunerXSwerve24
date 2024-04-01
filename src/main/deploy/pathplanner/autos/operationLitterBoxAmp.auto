@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.75,
-      "y": 4.403274541213847
+      "x": 0.6529766905687672,
+      "y": 6.699654168539107
     },
-    "rotation": 122.71
+    "rotation": -120.19162296095759
   },
   "command": {
     "type": "sequential",
@@ -38,19 +38,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "blockAllNotesCenter"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "blockAllNotesUp"
+            "pathName": "blockAllNotesCenterAmp"
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "blockAllNotesDown"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "blockAllNotesUp"
           }
         }
       ]
