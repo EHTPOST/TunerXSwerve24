@@ -21,7 +21,7 @@ public class MetaSubsystem extends SubsystemBase {
     private int blinkCount;
     private int countToHalf;
     private DigitalInput whatTheNoteDoing;
-    private boolean intakePressed;
+    private int intakeVersion;
     private int shootVersion;
     private boolean shootPressed;
 
@@ -34,12 +34,12 @@ public class MetaSubsystem extends SubsystemBase {
         countToHalf = 0;
         whatTheNoteDoing = new DigitalInput(0);
         shootVersion = 0;
-        intakePressed = false;
+        intakeVersion = 0;
         shootPressed = false;
     }
 
-    public void intake(boolean pressed) {
-        intakePressed = pressed;
+    public void intakeVersion(int version) {
+        intakeVersion = version;
     }
 
     public void shootVersion(int version){
@@ -59,20 +59,24 @@ public class MetaSubsystem extends SubsystemBase {
                 shootPressed = false;
                 shooter.brake().schedule();
                 intake.brake().schedule();
-                candle.redLarsons();
+                candle.red();
                 if (!whatTheNoteDoing.get()) {
                     stage = Stage.LOADED;
                     break;
                 }
-                if (intakePressed) {
+                if (intakeVersion != 0) {
                     stage = Stage.TAKINGIN;
                     break;
                 }
                 break;
             case TAKINGIN:
-                intakePressed = false;
-                shooter.takeInShooter().schedule();
-                intake.takeInShooter().schedule();
+                if(intakeVersion == 1){
+                    intake.takeIn().schedule();
+                }
+                if(intakeVersion == 2){
+                    shooter.takeInShooter().schedule();
+                    intake.takeInShooter().schedule();
+                }
                 candle.red();
                 if (!whatTheNoteDoing.get()) {
                     stage = Stage.LOADED;
@@ -98,17 +102,18 @@ public class MetaSubsystem extends SubsystemBase {
                 break;
             case RAMPINGUP:
                 shooter.shoot(shootVersion).schedule();
+                //LEDs
                 if (shootPressed) {
                     stage = Stage.SHOOTING;
                     shootPressed = false;
                 }
                 break;
             case SHOOTING:
-                intakePressed = false;
+                intakeVersion = 0;
                 candle.blue();
                 intake.takeIn().schedule();
                 shooter.shoot(shootVersion).schedule();
-                if (countToHalf == 50) {
+                if (countToHalf ==  50) {
                     stage = Stage.START;
                     countToHalf = 0;
                 } else {

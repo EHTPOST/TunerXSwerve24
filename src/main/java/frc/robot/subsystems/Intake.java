@@ -9,29 +9,41 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase{
     TalonFX intake;
+    TalonFX feeder;
     DutyCycleOut voltage;
 
-    public Intake(int intakeID){
-        intake = new TalonFX(4);
+    public Intake(int intakeID, int feederID){
+        intake = new TalonFX(feederID);
+        feeder = new TalonFX(intakeID);
         voltage = new DutyCycleOut(0);
     
-        // //config
         Constants.MechConstants.configureCTREIntake();
         intake.getConfigurator().apply(Constants.MechConstants.intakeMotorConfig);
+        feeder.getConfigurator().apply(Constants.MechConstants.feederMotorConfig);
+
     }
     
     public Command takeIn(){
         voltage.Output = Constants.MechConstants.intakeTakeIn;
-        return this.run(() -> intake.set(.8));
+        return this.run(() -> {
+            intake.setControl(voltage);
+            feeder.setControl(voltage);
+        });
     }
 
     public Command takeInShooter(){
         voltage.Output = Constants.MechConstants.intakeTakeIn *-1;
-        return this.run(() -> intake.setControl(voltage));
+        return this.run(() -> {
+            intake.setControl(voltage);
+            feeder.setControl(voltage);
+        });
     }
 
     public Command brake(){
         voltage.Output = 0;
-        return this.run(() -> intake.setControl(voltage));
+        return this.run(() -> {
+            intake.setControl(voltage);
+            feeder.setControl(voltage);
+        });
     }
 }

@@ -26,6 +26,7 @@ public class Constants {
         //motorIDs
         public static final int shooterMotor1 = 1;
         public static final int shooterMotor2 = 2;
+        public static final int intakeMotor = 3;
         public static final int feederMotor = 4;
         public static final int climbMotor1 = 5;
         public static final int climbMotor2 = 6;
