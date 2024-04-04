@@ -13,12 +13,12 @@ public class Intake extends SubsystemBase{
     DutyCycleOut voltage;
 
     public Intake(int intakeID, int feederID){
-        intake = new TalonFX(feederID);
+        // intake = new TalonFX(feederID);
         feeder = new TalonFX(intakeID);
         voltage = new DutyCycleOut(0);
     
         Constants.MechConstants.configureCTREIntake();
-        intake.getConfigurator().apply(Constants.MechConstants.intakeMotorConfig);
+        // intake.getConfigurator().apply(Constants.MechConstants.intakeMotorConfig);
         feeder.getConfigurator().apply(Constants.MechConstants.feederMotorConfig);
 
     }
@@ -26,7 +26,7 @@ public class Intake extends SubsystemBase{
     public Command takeIn(){
         voltage.Output = Constants.MechConstants.intakeTakeIn;
         return this.run(() -> {
-            intake.setControl(voltage);
+            // intake.setControl(voltage);
             feeder.setControl(voltage);
         });
     }
@@ -34,7 +34,7 @@ public class Intake extends SubsystemBase{
     public Command takeInShooter(){
         voltage.Output = Constants.MechConstants.intakeTakeIn *-1;
         return this.run(() -> {
-            intake.setControl(voltage);
+            // intake.setControl(voltage);
             feeder.setControl(voltage);
         });
     }
@@ -42,7 +42,7 @@ public class Intake extends SubsystemBase{
     public Command brake(){
         voltage.Output = 0;
         return this.run(() -> {
-            intake.setControl(voltage);
+            // intake.setControl(voltage);
             feeder.setControl(voltage);
         });
     }
