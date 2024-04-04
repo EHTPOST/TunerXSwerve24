@@ -80,11 +80,10 @@ public class Constants {
         public static final TalonFXConfiguration climberMotorConfig = new TalonFXConfiguration();
         public static final TalonFXConfiguration climberMotorConfig2 = new TalonFXConfiguration();
 
-        public static double climbMotorOffset = 0.261230;
-        public static double climbForwardLimit = 0 - climbMotorOffset;
-        public static double climbForwardLimit2 = 0 - climbMotorOffset;        
-        public static double climbReverseLimit = -69.050293 + climbMotorOffset;
-        public static double climbReverseLimit2 = -69.050293 + climbMotorOffset;
+        public static double climbForwardLimit = 96.914551;
+        public static double climbForwardLimit2 = 75.949707;        
+        public static double climbReverseLimit = -20.761719;
+        public static double climbReverseLimit2 = -2.131836;
         public static double climbSpeed = 0.35;
 
         public static void configureCTREClimber(boolean left){
